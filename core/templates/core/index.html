@@ -1,60 +1,97 @@
 {% extends 'base/base.html' %}
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-lg-2">
-                <div class="card">
+    <div class="container-fluid pt-4">
+        <h1 class="ml-5">Covid 19 - Global Data</h1>
+    </div>
+    <div class="container-fluid p-5">
+        <div class="row text-center">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card bg-warning text-dark shadow rounded">
                     <div class="card-body">
-                        <h4 class="cart-title">New Confirmed</h4>
+                        <h4 class="cart-title">New Case</h4>
                         <p class="card-text">{{ global_summery.NewConfirmed }}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="col-12 col-lg-2">
-                <div class="card">
+             <div class="col-12 col-md-6 col-lg-4">
+                <div class="card bg-danger text-white shadow rounded">
                     <div class="card-body">
-                        <h4 class="cart-title">TotalConfirmed</h4>
-                        <p class="card-text">{{ global_summery.TotalConfirmed }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="cart-title">NewDeaths</h4>
+                        <h4 class="cart-title">New Deaths</h4>
                         <p class="card-text">{{ global_summery.NewDeaths }}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="col-12 col-lg-2">
-                <div class="card">
+             <div class="col-12 col-md-6 col-lg-4">
+                <div class="card bg-success text-white shadow rounded">
                     <div class="card-body">
-                        <h4 class="cart-title">TotalDeaths</h4>
-                        <p class="card-text">{{ global_summery.TotalDeaths }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="cart-title">NewRecovered</h4>
+                        <h4 class="cart-title">New Recovered</h4>
                         <p class="card-text">{{ global_summery.NewRecovered }}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="col-12 col-lg-2">
-                <div class="card">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card bg-secondary text-white shadow rounded">
                     <div class="card-body">
-                        <h4 class="cart-title">TotalRecovered</h4>
+                        <h4 class="cart-title">Total Case</h4>
+                        <p class="card-text">{{ global_summery.TotalConfirmed }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card bg-dark text-white shadow rounded">
+                    <div class="card-body ">
+                        <h4 class="cart-title">Total Deaths</h4>
+                        <p class="card-text">{{ global_summery.TotalDeaths }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card bg-info text-white shadow rounded">
+                    <div class="card-body">
+                        <h4 class="cart-title">Total Recovered</h4>
                         <p class="card-text">{{ global_summery.TotalRecovered }}</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="container-fluid">
+            <hr class="mt-5">
+            <h1 class="">Country Wise Summery</h1>
+            <hr>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table mt-5">
+                <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Country</th>
+                    <th>New Confirmed</th>
+                    <th>Total Confirmed</th>
+                    <th>New Deaths</th>
+                    <th>Total Deaths</th>
+                    <th>New Recovered</th>
+                    <th>Total Recovered</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for country in countries %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ country.Country }}</td>
+                        <td>{{ country.NewConfirmed }}</td>
+                        <td>{{ country.TotalConfirmed }}</td>
+                        <td>{{ country.NewDeaths }}</td>
+                        <td>{{ country.TotalDeaths }}</td>
+                        <td>{{ country.NewRecovered }}</td>
+                        <td>{{ country.TotalRecovered }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
     </div>
+
 {% endblock %}

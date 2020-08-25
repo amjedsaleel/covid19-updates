@@ -6,7 +6,8 @@ import requests
 
 def index(request):
     result = requests.get('https://api.covid19api.com/summary')
-    global_summery = result.json()['Global']
-    print(global_summery)
-    return render(request, 'core/index.html', {'global_summery': global_summery})
+    json = result.json()
+    global_summery = json['Global']
+    countries = json['Countries']
+    return render(request, 'core/index.html', {'global_summery': global_summery, 'countries': countries})
 
